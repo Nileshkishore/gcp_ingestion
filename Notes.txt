@@ -1,1 +1,3 @@
 pip install pandas sqlalchemy psycopg2 google-cloud-storage
+
+give the serviceaccount permission of storage admin
