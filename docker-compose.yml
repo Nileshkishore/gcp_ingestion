@@ -1,0 +1,31 @@
+# version'3.8': 
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5430:5432"  # Expose PostgreSQL on port 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Persist data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com  # Default email for pgAdmin login
+      PGADMIN_DEFAULT_PASSWORD: admin  # Default password for pgAdmin login
+    ports:
+      - "8080:80"  # Expose pgAdmin on port 8080
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin  # Persist pgAdmin data
+
+volumes:  # Define named volumes for persistence
+  postgres_data: {}  # Empty brackets signify a named volume
+  pgadmin_data: {}  # Empty brackets signify a named volume
